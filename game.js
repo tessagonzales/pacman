@@ -26,16 +26,20 @@ class Food {
 let pacman = new Character();
 let cherry = new Food(300, 300, 'red', 5);
 
-function createCherry() {
+// making more cherries
+function createCherries() {
     let cherryArr = [];
-    let randomX = Math.random() * canvas.width;
-    let randonY = Math.random() * canvas.height;
 
     for (let i=0; i<=100; i++) {
-        cherryArr.push(new Food(randomX, randonY, 'red'))
+        let randomX = Math.floor(Math.random() * canvas.width);
+        let randomY = Math.floor(Math.random() * canvas.height);
+        cherryArr.push(new Food(randomX, randomY, 'red'))
     }
+    console.log(cherryArr)
     return cherryArr
 }
+createCherries();
+let cherryList = createCherries()
 
 // ctx draw
 // pacman draw
@@ -48,20 +52,19 @@ function drawPacman() {
     ctx.closePath()
 }
 
-// cherry drtaw
+// cherry draw
 function drawCherry() {
-    ctx.beginPath();
-    ctx.arc(cherry.x, cherry.y, cherry.diameter, 0, Math.PI * 2)
-    ctx.fillStyle = cherry.color
-    ctx.fill()
-    ctx.closePath()
+        ctx.beginPath();
+        ctx.arc(cherry.x, cherry.y, cherry.diameter, 0, Math.PI * 2)
+        ctx.fillStyle = cherry.color
+        ctx.fill()
+        ctx.closePath()
 }
 
 function draw () {
     ctx.clearRect(0,0, canvas.width, canvas.height)
     drawPacman();
     drawCherry();
-    createCherry();
 }
 
 // identfy keys
